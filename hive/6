@@ -1,0 +1,10 @@
+create table if not exists total_application(total int,year string)
+row format delimited 
+fields terminated by ',';
+
+insert overwrite table total_application select count(*),year from h1b where h1b.case_status is not NULL group by year;
+
+select a.case_status,count(*) as total,a.year,ROUND((count(*)/b.total_application)*100,2) as status from h1b_final a left outer join total_application b on (a.year=b.year) where a.year is not NULL group by a.case_status,b.total,a.year order by a.year;
+
+
+
