@@ -75,8 +75,6 @@ public class Question3 {
 		    //job.setNumReduceTasks(0);
 		    job.setMapOutputKeyClass(Text.class);
 		    job.setMapOutputValueClass(IntWritable.class);
-		    job.setOutputKeyClass(Text.class);
-		    job.setOutputValueClass(IntWritable.class);
 		    FileInputFormat.addInputPath(job, new Path(args[0]));
 		    FileOutputFormat.setOutputPath(job, new Path(args[1]));
 		    System.exit(job.waitForCompletion(true) ? 0 : 1);
